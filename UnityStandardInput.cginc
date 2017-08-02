@@ -95,7 +95,8 @@ half3 Albedo(float4 texcoords)
     #endif
     half3 detailAlbedo = tex2D (_DetailAlbedoMap, texcoords.zw).rgb;
     #if _DETAIL_MULX2
-        albedo *= LerpWhiteTo (detailAlbedo * unity_ColorSpaceDouble.rgb, mask);
+        //albedo *= LerpWhiteTo (detailAlbedo * unity_ColorSpaceDouble.rgb, mask);
+		albedo = lerp (albedo, detailAlbedo, mask);
     #elif _DETAIL_MUL
         albedo *= LerpWhiteTo (detailAlbedo, mask);
     #elif _DETAIL_ADD
